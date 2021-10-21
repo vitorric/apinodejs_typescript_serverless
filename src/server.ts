@@ -1,8 +1,7 @@
-const AWS = require('aws-sdk');
-const express = require('express');
-const sls = require('serverless-http');
+import express from 'express';
+import sls from 'serverless-http';
 
-const routes = require('./infra/http/routes');
+import routes from './infra/http/routes';
 
 const app = express();
 
@@ -11,7 +10,7 @@ app.use(
   express.urlencoded({ limit: '2000MB', extended: true })
 );
 
-routes.default(app);
+routes(app);
 
 app.use((req, res, next) => {
   return res.status(404).json();

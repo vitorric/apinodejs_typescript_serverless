@@ -4,7 +4,7 @@ import schema from '../schemas/userSchema';
 
 export default class UsersRepository implements IUsersRepository {
   async exists(id: string): Promise<boolean> {
-    const user = schema.query({ id: { eq: id } });
+    const user = await schema.query({ id: { eq: id } }).exec();
 
     return !!user;
   }

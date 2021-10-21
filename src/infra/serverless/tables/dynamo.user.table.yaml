@@ -1,0 +1,10 @@
+UserTable:
+  Type: AWS::DynamoDB::Table
+  TableName: ${env:USER_TABLE}
+  Properties:
+    AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+    KeySchema:
+      - AttributeName: id
+        KeyType: HASH

@@ -7,7 +7,7 @@ const User_1 = __importDefault(require("../../../../core/entities/User"));
 const userSchema_1 = __importDefault(require("../schemas/userSchema"));
 class UsersRepository {
     async exists(id) {
-        const user = userSchema_1.default.query({ id: { eq: id } });
+        const user = await userSchema_1.default.query({ id: { eq: id } }).exec();
         return !!user;
     }
     async create(user) {

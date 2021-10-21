@@ -31,6 +31,7 @@ const schema = new Schema({
 }, {
     timestamps: true,
 });
-const model = dynamoose_1.default.model('User', schema);
+console.log(process.env.USER_TABLE);
+const model = dynamoose_1.default.model(process.env.USER_TABLE, schema);
 exports.default = model;
 //# sourceMappingURL=userSchema.js.map

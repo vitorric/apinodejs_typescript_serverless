@@ -4,15 +4,36 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs14.x
+  stage: ${env:NODE_ENV}
   lambdaHashingVersion: '20201221'
+  iam:
+    role:
+      statements:
+        ${file(./src/infra/serverless/db.iam.role.yaml)}
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-plugin-typescript
+  #- serverless-dynamodb-local
   - serverless-offline
 
 package:
   excludeDevDependencies: true
   individually: true
+
+#custom:
+#  dynamodb:
+#    stages:
+#      - dev
+#    start:
+#      host: ${env:LOCALSTACK_HOST}
+#      port: ${env:DYNAMODB_PORT}
+#      migrate: true
+#      seed: true
+#
+#resources:
+#  Resources:
+#    ${file(./src/infra/serverless/tables/dynamo.user.table.yaml)}
 
 functions:
   api:
