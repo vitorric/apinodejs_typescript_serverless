@@ -1,13 +1,12 @@
+import { IUsersRepository } from '../../../infra/db/IUserRepository';
+import { IMailProvider } from '../../../infra/providers/IMailProvider';
 import {
   ControllerResponse,
   ok,
   created,
   conflict,
-} from '@core/controllers/ControllerResponse';
-import User from '@core/entities/User';
-import { IMailProvider } from '@infra/providers/IMailProvider';
-import { IUsersRepository } from '@infra/repositories/IUsersRepository';
-
+} from '../../controllers/ControllerResponse';
+import User from '../../entities/User';
 import { ICreateUserRequestDTO } from './IUserServiceDTO';
 
 export class UserService {

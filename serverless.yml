@@ -1,0 +1,21 @@
+service: aws-node-typescript-dynamodb
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+package:
+  excludeDevDependencies: true
+  individually: true
+
+functions:
+  api:
+    handler: src/server.handler
+    events:
+      - httpApi: '*'

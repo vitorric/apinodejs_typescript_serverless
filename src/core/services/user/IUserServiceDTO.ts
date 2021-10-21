@@ -1,4 +1,4 @@
-import { Roles } from '@core/entities/User';
+import { Roles } from '../../entities/User';
 
 export type ICreateUserRequestDTO = {
   name: string;
