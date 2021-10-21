@@ -1,42 +1,36 @@
 service: aws-node-typescript-dynamodb
 frameworkVersion: '2'
 
+variablesResolutionMode: 20210219
+
+custom:
+  dotenvVars: ${file(./config/config.js)}
+
 provider:
   name: aws
   runtime: nodejs14.x
-  stage: ${env:NODE_ENV}
+  stage: ${self:custom.dotenvVars.NODE_ENV}
   lambdaHashingVersion: '20201221'
   iam:
     role:
       statements:
-        ${file(./src/infra/serverless/db.iam.role.yaml)}
-
-plugins:
-  - serverless-dotenv-plugin
-  - serverless-plugin-typescript
-  #- serverless-dynamodb-local
-  - serverless-offline
+        ${file(./config/serverless/db.iam.role.yaml)}
 
 package:
   excludeDevDependencies: true
   individually: true
 
-#custom:
-#  dynamodb:
-#    stages:
-#      - dev
-#    start:
-#      host: ${env:LOCALSTACK_HOST}
-#      port: ${env:DYNAMODB_PORT}
-#      migrate: true
-#      seed: true
-#
-#resources:
-#  Resources:
-#    ${file(./src/infra/serverless/tables/dynamo.user.table.yaml)}
+resources:
+  Resources:
+    ${file(./config/serverless/tables/dynamo.user.table.yaml)}
 
 functions:
   api:
     handler: src/server.handler
     events:
       - httpApi: '*'
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dynamodb-local
+  - serverless-offline

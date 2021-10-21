@@ -1,5 +1,8 @@
 import express from 'express';
 import sls from 'serverless-http';
+import setupDynamoDBClient from './infra/db/dynamoose/connection';
+
+setupDynamoDBClient();
 
 import routes from './infra/http/routes';
 

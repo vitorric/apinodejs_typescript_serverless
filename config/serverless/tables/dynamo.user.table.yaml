@@ -1,0 +1,13 @@
+UserTable:
+  Type: AWS::DynamoDB::Table
+  Properties:
+    TableName: ${env:USER_TABLE}
+    AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+    KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+    ProvisionedThroughput:
+      ReadCapacityUnits: ${env:DYNAMODB_READ_CAPACITY_UNITS}
+      WriteCapacityUnits: ${env:DYNAMODB_WRITE_CAPACITY_UNITS}

@@ -1,6 +1,7 @@
 dist
 /*.js
 node_modules
-.serverless
 .vscode
 /src/server.ts
+
+.serverless

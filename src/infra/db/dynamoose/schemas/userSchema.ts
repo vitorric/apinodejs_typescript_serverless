@@ -32,7 +32,6 @@ const schema = new Schema(
   }
 );
 
-console.log(process.env.USER_TABLE);
 const model = dynamoose.model(process.env.USER_TABLE as string, schema);
 
 export default model;
