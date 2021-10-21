@@ -1,8 +1,6 @@
 import express from 'express';
 import sls from 'serverless-http';
-import setupDynamoDBClient from './infra/db/dynamoose/connection';
-
-setupDynamoDBClient();
+import setupDynamoDBClient from './infra/db/mongodb/connection';
 
 import routes from './infra/http/routes';
 

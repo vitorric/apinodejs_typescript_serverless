@@ -4,8 +4,7 @@ import schema from '../schemas/userSchema';
 
 export default class UsersRepository implements IUsersRepository {
   async exists(email: string): Promise<boolean> {
-    const user = await schema.query('email').eq(email).exec();
-    console.log(user);
+    const user = await schema.findOne({ email }).exec();
     return !!user;
   }
 
@@ -18,7 +17,8 @@ export default class UsersRepository implements IUsersRepository {
     }
   }
 
-  async findById(id: string): Promise<User> {
-    return new User({ name: '1', email: id, password: '', role: '' });
+  async findById(userId: string): Promise<User> {
+    const user = (await schema.findOne({ _id: userId }).exec()) as User;
+    return user;
   }
 }

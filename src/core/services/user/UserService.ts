@@ -40,7 +40,8 @@ export class UserService {
     return created();
   }
 
-  async get(id: string): Promise<ControllerResponse> {
-    return ok({ id });
+  async get(userId: string): Promise<ControllerResponse> {
+    const user = await this.usersRepository.findById(userId);
+    return ok(user);
   }
 }

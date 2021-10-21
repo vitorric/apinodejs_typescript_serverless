@@ -11,18 +11,10 @@ provider:
   runtime: nodejs14.x
   stage: ${self:custom.dotenvVars.NODE_ENV}
   lambdaHashingVersion: '20201221'
-  iam:
-    role:
-      statements:
-        ${file(./config/serverless/db.iam.role.yaml)}
 
 package:
   excludeDevDependencies: true
   individually: true
-
-resources:
-  Resources:
-    ${file(./config/serverless/tables/dynamo.user.table.yaml)}
 
 functions:
   api:
@@ -32,5 +24,4 @@ functions:
 
 plugins:
   - serverless-plugin-typescript
-  - serverless-dynamodb-local
   - serverless-offline

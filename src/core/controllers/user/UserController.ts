@@ -1,4 +1,4 @@
-import UserRepository from '../../../infra/db/dynamoose/implementations/userRepository';
+import UserRepository from '../../../infra/db/mongodb/implementations/userRepository';
 import MailtrapMailProvider from '../../../infra/providers/implementations/MailtrapMailProvider';
 import { UserService } from '../../services/user/UserService';
 import { ControllerResponse } from '../ControllerResponse';
@@ -15,7 +15,7 @@ export default class UserController implements IUserController {
   }
 
   async get(event: any): Promise<ControllerResponse> {
-    const { id } = event.params;
-    return userService.get(id);
+    const { userId } = event.params;
+    return userService.get(userId);
   }
 }

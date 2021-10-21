@@ -10,7 +10,7 @@ router.post('/create', async (request, response) =>
   resJson(response, await userController.create({ ...request }))
 );
 
-router.get('/get/:id', async (request, response) =>
+router.get('/get/:userId', async (request, response) =>
   resJson(response, await userController.get({ ...request }))
 );
 
