@@ -3,8 +3,8 @@ import { IUsersRepository } from '../../IUserRepository';
 import schema from '../schemas/userSchema';
 
 export default class UsersRepository implements IUsersRepository {
-  async exists(id: string): Promise<boolean> {
-    const user = await schema.query({ id: { eq: id } }).exec();
+  async exists(email: string): Promise<boolean> {
+    const user = await schema.query('email').eq(email).exec();
     console.log(user);
     return !!user;
   }
